@@ -1,86 +1,111 @@
+var source = require('vinyl-source-stream');
 var gulp = require('gulp');
 var gutil = require('gulp-util');
-var source = require('vinyl-source-stream');
 var browserify = require('browserify');
+var babelify = require('babelify');
 var watchify = require('watchify');
-var reactify = require('reactify');
-var notifier = require('node-notifier');
-var server = require('gulp-server-livereload');
-var concat = require('gulp-concat');
-var sass = require('gulp-sass');
-var watch = require('gulp-watch');
+var notify = require('gulp-notify');
 
-var notify = function(error) {
-    var message = 'In: ';
-    var title = 'Error: ';
+var stylus = require('gulp-stylus');
+var autoprefixer = require('gulp-autoprefixer');
+var uglify = require('gulp-uglify');
+var rename = require('gulp-rename');
+var buffer = require('vinyl-buffer');
 
-    if(error.description) {
-        title += error.description;
-    } else if (error.message) {
-        title += error.message;
-    }
+var browserSync = require('browser-sync');
+var reload = browserSync.reload;
+var historyApiFallback = require('connect-history-api-fallback');
 
-    if(error.filename) {
-        var file = error.filename.split('/');
-        message += file[file.length-1];
-    }
 
-    if(error.lineNumber) {
-        message += '\nOn Line: ' + error.lineNumber;
-    }
+/*
+ Styles Task
+ */
 
-    notifier.notify({title: title, message: message});
-};
+gulp.task('styles',function() {
+    // move over fonts
 
-var bundler = watchify(browserify({
-    entries: ['./src/app.jsx'],
-    transform: [reactify],
-    extensions: ['.jsx'],
-    debug: true,
-    cache: {},
-    packageCache: {},
-    fullPaths: true
-}));
+    gulp.src('css/fonts/**.*')
+        .pipe(gulp.dest('build/css/fonts'));
 
-function bundle() {
-    return bundler
-        .bundle()
-        .on('error', notify)
-        .pipe(source('main.js'))
-        .pipe(gulp.dest('./'))
+    // Compiles CSS
+    gulp.src('css/style.styl')
+        .pipe(stylus())
+        .pipe(autoprefixer())
+        .pipe(gulp.dest('./build/css/'))
+        .pipe(reload({stream:true}));
+});
+
+/*
+ Images
+ */
+gulp.task('images',function(){
+    gulp.src('css/images/**')
+        .pipe(gulp.dest('./build/css/images'));
+});
+
+/*
+ Browser Sync
+ */
+gulp.task('browser-sync', function() {
+    browserSync({
+        // we need to disable clicks and forms for when we test multiple rooms
+        server : {},
+        middleware : [ historyApiFallback() ],
+        ghostMode: false
+    });
+});
+
+function handleErrors() {
+    var args = Array.prototype.slice.call(arguments);
+    notify.onError({
+        title: 'Compile Error',
+        message: '<%= error.message %>'
+    }).apply(this, args);
+    this.emit('end'); // Keep gulp from hanging on this task
 }
-bundler.on('update', bundle);
 
-gulp.task('build', function() {
-    bundle()
+function buildScript(file, watch) {
+    var props = {
+        entries: ['./scripts/' + file],
+        debug : true,
+        cache: {},
+        packageCache: {},
+        transform:  [babelify.configure({stage : 0 })]
+    };
+
+    // watchify() if watch requested, otherwise run browserify() once
+    var bundler = watch ? watchify(browserify(props)) : browserify(props);
+
+    function rebundle() {
+        var stream = bundler.bundle();
+        return stream
+            .on('error', handleErrors)
+            .pipe(source(file))
+            .pipe(gulp.dest('./build/'))
+            // If you also want to uglify it
+            // .pipe(buffer())
+            // .pipe(uglify())
+            // .pipe(rename('app.min.js'))
+            // .pipe(gulp.dest('./build'))
+            .pipe(reload({stream:true}))
+    }
+
+    // listen for an update and run rebundle
+    bundler.on('update', function() {
+        rebundle();
+        gutil.log('Rebundle...');
+    });
+
+    // run it once the first time buildScript is called
+    return rebundle();
+}
+
+gulp.task('scripts', function() {
+    return buildScript('main.js', false); // this will run once because we set watch to false
 });
 
-gulp.task('serve', function() {
-    gulp.src('')
-        .pipe(server({
-            livereload: {
-                enable: true,
-                filter: function(filePath, cb) {
-                    if(/main.js/.test(filePath)) {
-                        cb(true)
-                    } else if(/style.css/.test(filePath)){
-                        cb(true)
-                    }
-                }
-            },
-            open: true
-        }));
-});
-
-gulp.task('sass', function () {
-    gulp.src('./sass/**/*.scss')
-        .pipe(sass().on('error', sass.logError))
-        .pipe(concat('style.css'))
-        .pipe(gulp.dest('./'));
-});
-
-gulp.task('default', ['build', 'serve', 'sass', 'watch']);
-
-gulp.task('watch', function () {
-    gulp.watch('./sass/**/*.scss', ['sass']);
+// run 'scripts' task first, then watch for future changes
+gulp.task('default', ['images','styles','scripts','browser-sync'], function() {
+    gulp.watch('css/**/*', ['styles']); // gulp watch for stylus changes
+    return buildScript('main.js', true); // browserify watch for JS changes
 });
