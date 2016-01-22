@@ -27,7 +27,7 @@
           ],
           "name": "Aircraft Ownership",
           "probableSource": "FEDERAL AVIATION ADMINISTRATION",
-          "value": "1.50"
+          "value": 150
         },
         "assets": {
           "commercialSource": "http://www.accurint.com/",
@@ -39,7 +39,7 @@
           ],
           "name": "Assets",
           "probableSource": "PUBLIC RECORDS",
-          "value": "6.95"
+          "value": 695
         },
         "assetsSeized": {
           "commercialSource": "http://www.docusearch.com/",
@@ -51,7 +51,7 @@
           ],
           "name": "Assets Seized",
           "probableSource": "PUBLIC RECORDS",
-          "value": "2.95"
+          "value": 295
         },
         "bankruptcy": {
           "commercialSource": "http://www.knowx.com/",
@@ -64,7 +64,7 @@
           ],
           "name": "Bankruptcy",
           "probableSource": "PUBLIC RECORDS",
-          "value": "26.50"
+          "value": 2650
         },
         "business": {
           "commercialSource": "http://www.knowx.com/",
@@ -77,7 +77,7 @@
           ],
           "name": "Business Ownership",
           "probableSource": "SECRETARY OF STATE OFFICES",
-          "value": "9.95"
+          "value": 995
         },
         "credit": {
           "commercialSource": "http://www.experian.com/",
@@ -89,7 +89,7 @@
           ],
           "name": "Credit",
           "probableSource": "PUBLIC RECORDS/CREDIT REPORTING AGENCY",
-          "value": "9.00"
+          "value": 900
         },
         "execAffil": {
           "commercialSource": "http://www.knowx.com/",
@@ -101,7 +101,7 @@
           ],
           "name": "Executive Affiliation",
           "probableSource": "PUBLIC RECORDS",
-          "value": "0.50"
+          "value": 50
         },
         "realEstate": {
           "commercialSource": "http://www.knowx.com/",
@@ -112,7 +112,7 @@
           ],
           "name": "Real Estate",
           "probableSource": "PUBLIC RECORDS",
-          "value": "1.50"
+          "value": 150
         },
         "shareholder": {
           "commercialSource": "http://www.knowx.com/",
@@ -123,7 +123,7 @@
           ],
           "name": "Shareholder",
           "probableSource": "SECURITIES AND EXCHANGE COMMISSION",
-          "value": "1.50"
+          "value": 150
         },
         "vehicle": {
           "commercialSource": "http://www.locateplus.com/",
@@ -134,7 +134,7 @@
           ],
           "name": "Vehicle Ownership",
           "probableSource": "PUBLIC RECORDS",
-          "value": "0.75"
+          "value": 75
         },
         "watercraft": {
           "commercialSource": "http://www.knowx.com/",
@@ -144,7 +144,7 @@
           ],
           "name": "Watercraft Ownership",
           "probableSource": "PUBLIC RECORDS",
-          "value": "1.50"
+          "value": 150
         },
         "workersComp": {
           "commercialSource": "http://www.knowx.com/",
@@ -156,7 +156,7 @@
           ],
           "name": "Worker's Compensation",
           "probableSource": "PUBLIC RECORDS",
-          "value": "18.00"
+          "value": 1800
         }
       },
       "general": {
@@ -167,7 +167,7 @@
           ],
           "name": "Address",
           "probableSource": "PUBLIC RECORDS",
-          "value": "0.50"
+          "value": 50
         },
         "cellPhone": {
           "commercialSource": "http://pallorium.com",
@@ -176,7 +176,7 @@
           ],
           "name": "Cellular Phone Number",
           "probableSource": "CREDIT REPORTING AGENCY/TELECOMMUNICATION CO.",
-          "value": "10.00"
+          "value": 1000
         },
         "divorce": {
           "commercialSource": "http://www.knowx.com/",
@@ -188,7 +188,7 @@
           ],
           "name": "Divorce Record",
           "probableSource": "PUBLIC RECORDS",
-          "value": "7.95"
+          "value": 795
         },
         "dob": {
           "commercialSource": "http://www.merlindata.com/",
@@ -197,7 +197,7 @@
           ],
           "name": "Date of Birth",
           "probableSource": "PUBLIC RECORDS",
-          "value": "2.00"
+          "value": 200
         },
         "domain": {
           "commercialSource": "http://www.accurint.com/",
@@ -206,7 +206,7 @@
           ],
           "name": "Registered URL/Domain Name(s)",
           "probableSource": "REGISTRY WHOIS DATABASE",
-          "value": "0.25"
+          "value": 25
         },
         "education": {
           "commercialSource": "http://www.choicepoint.com/",
@@ -219,7 +219,7 @@
           ],
           "name": "Education",
           "probableSource": "PUBLIC RECORDS",
-          "value": "12.00"
+          "value": 1200
         },
         "employment": {
           "commercialSource": "http://choicepoint.com/",
@@ -234,7 +234,7 @@
           ],
           "name": "Employment",
           "probableSource": "CREDIT REPORTING AGENCY/EMPLOYER",
-          "value": "13.00"
+          "value": 1300
         },
         "marriage": {
           "commercialSource": "http://www.knowx.com/",
@@ -245,7 +245,7 @@
           ],
           "name": "Marriage Record",
           "probableSource": "PUBLIC RECORDS",
-          "value": "7.95"
+          "value": 795
         },
         "neighbors": {
           "commercialSource": "http://www.accurint.com/",
@@ -255,7 +255,7 @@
           ],
           "name": "Neighbors",
           "probableSource": "PUBLIC RECORDS",
-          "value": "0.25"
+          "value": 25
         },
         "pastAddress": {
           "commercialSource": "http://www.knowx.com/",
@@ -264,7 +264,7 @@
           ],
           "name": "Past Addresses",
           "probableSource": "PUBLIC RECORDS",
-          "value": "9.95"
+          "value": 995
         },
         "pastPhone": {
           "commercialSource": "http://pallorium.com/",
@@ -273,7 +273,7 @@
           ],
           "name": "Past Phone Numbers",
           "probableSource": "TELECOMMUNICATION COMPANY",
-          "value": "0.50"
+          "value": 50
         },
         "publishedPhone": {
           "commercialSource": "http://www.knowx.com",
@@ -282,7 +282,7 @@
           ],
           "name": "Published Phone Number",
           "probableSource": "TELECOMMUNICATION COMPANY",
-          "value": "0.25"
+          "value": 25
         },
         "relatives": {
           "commercialSource": "http://www.accurint.com/",
@@ -291,7 +291,7 @@
           ],
           "name": "Relatives",
           "probableSource": "PUBLIC RECORDS",
-          "value": "3.00"
+          "value": 300
         },
         "ssn": {
           "commercialSource": "http://www.choicepoint.com/",
@@ -300,7 +300,7 @@
           ],
           "name": "Social Security Number",
           "probableSource": "CREDIT REPORTING AGENCY",
-          "value": "8.00"
+          "value": 800
         },
         "unpublishedPhone": {
           "commercialSource": "http://pallorium.com",
@@ -309,7 +309,7 @@
           ],
           "name": "Unpublished Phone Number(s)",
           "probableSource": "TELECOMMUNICATION COMPANY",
-          "value": "17.50"
+          "value": 1750
         },
         "zipcode": {
           "commercialSource": "http://www.accurint.com/",
@@ -319,7 +319,7 @@
           "name": "Zipcode",
           "note": "Your zip code by itself is valuable because it allows for a neighborhood profile or demographic information to be assigned to you.",
           "probableSource": "PUBLIC RECORDS",
-          "value": "0.50"
+          "value": 50
         }
       },
       "legal": {
@@ -335,7 +335,7 @@
           ],
           "name": "Felony",
           "probableSource": "PUBLIC RECORDS",
-          "value": "16.00"
+          "value": 1600
         },
         "lawsuits": {
           "commercialSource": "http://www.choicetrust.com/",
@@ -349,7 +349,7 @@
           ],
           "name": "Lawsuits",
           "probableSource": "PUBLIC RECORDS",
-          "value": "2.95"
+          "value": 295
         },
         "misdemeanor": {
           "commercialSource": "http://www.choicepoint.com/",
@@ -363,7 +363,7 @@
           ],
           "name": "Misdemeanor",
           "probableSource": "PUBLIC RECORDS",
-          "value": "9.00"
+          "value": 900
         },
         "sexOffender": {
           "commercialSource": "http://www.choicetrust.com/",
@@ -374,7 +374,7 @@
           ],
           "name": "Sex Offender",
           "probableSource": "PUBLIC RECORDS",
-          "value": "13.00"
+          "value": 1300
         }
       },
       "licenses": {
@@ -386,7 +386,7 @@
           ],
           "name": "Accident Record",
           "probableSource": "State Department of Motor Vehicles",
-          "value": "1.00"
+          "value": 100
         },
         "aircraft": {
           "commercialSource": "http://www.knowx.com/",
@@ -398,13 +398,13 @@
           ],
           "name": "Aircraft License",
           "probableSource": "FEDERAL AVIATION ASSOCIATION",
-          "value": "1.50"
+          "value": 150
         },
         "concealedWeapon": {
           "commercialSource": "http://www.accurint.com/",
           "name": "Concealed Weapons",
           "probableSource": "PUBLIC RECORD",
-          "value": "0.25"
+          "value": 25
         },
         "dea": {
           "commercialSource": "http://www.knowx.com/",
@@ -414,7 +414,7 @@
           ],
           "name": "Drug Enforcement Administration License",
           "probableSource": "DRUG ENFORCEMENT ADMINISTRATION",
-          "value": "0.25"
+          "value": 25
         },
         "driverLicense": {
           "commercialSource": "http://www.accurint.com/",
@@ -425,31 +425,31 @@
           ],
           "name": "Driver License Information",
           "probableSource": "State Department of Motor Vehicles",
-          "value": "3.00"
+          "value": 300
         },
         "firearmExplosives": {
           "commercialSource": "http://www.accurint.com/",
           "name": "Federal Firearms and Explosives License",
           "probableSource": "PUBLIC RECORD",
-          "value": "0.25"
+          "value": 25
         },
         "huntingFishing": {
           "commercialSource": "http://www.accurint.com/",
           "name": "Hunting and Fishing License",
           "probableSource": "PUBLIC RECORD",
-          "value": "0.25"
+          "value": 25
         },
         "industrial": {
           "commercialSource": "http://www.choicepoint.com/",
           "name": "Industrial Accreditation",
           "probableSource": "PUBLIC RECORD",
-          "value": "16.00"
+          "value": 1600
         },
         "merchantVessel": {
           "commercialSource": "http://www.accurint.com/",
           "name": "Merchant Vessel",
           "probableSource": "PUBLIC RECORD",
-          "value": "0.25"
+          "value": 25
         },
         "motorVehicleRecord": {
           "commercialSource": "http://pallorium.com/",
@@ -460,7 +460,7 @@
           ],
           "name": "Motor Vehicle Record",
           "probableSource": "State Department of Motor Vehicles",
-          "value": "3.00"
+          "value": 300
         },
         "professional": {
           "commercialSource": "http://www.knowx.com/",
@@ -472,7 +472,7 @@
           ],
           "name": "Professional License",
           "probableSource": "PUBLIC RECORD",
-          "value": "0.75"
+          "value": 75
         },
         "vehicles": {
           "commercialSource": "http://www.accurint.com/",
@@ -482,7 +482,7 @@
           ],
           "name": "List of Vehicles",
           "probableSource": "State Department of Motor Vehicles",
-          "value": "0.75"
+          "value": 75
         }
       },
       "political": {
@@ -496,7 +496,7 @@
           ],
           "name": "Military Record",
           "probableSource": "PUBLIC RECORDS",
-          "value": "35.00"
+          "value": 3500
         },
         "voter": {
           "commercialSource": "http://www.voterlistsonline.com/",
@@ -506,7 +506,7 @@
           ],
           "name": "Voter Registration",
           "probableSource": "PUBLIC RECORDS",
-          "value": "0.25"
+          "value": 25
         }
       }
     }

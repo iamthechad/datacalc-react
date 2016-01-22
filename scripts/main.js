@@ -3,15 +3,22 @@ import ReactDOM from 'react-dom';
 
 import Rebase from 're-base';
 
+import h from './helpers';
+
 var base = Rebase.createClass('https://glaring-torch-2436.firebaseio.com/');
 
 var App = React.createClass({
+  onCategorySelect: function(key) {
+    var selectedItems = this.state.catalog.items[key];
+    this.setState({ selectedItems: selectedItems });
+  },
   getInitialState: function () {
     return {
       catalog: {
         categories: {},
         items: {}
-      }
+      },
+      selectedItems: {}
     }
   },
   componentDidMount: function () {
@@ -22,9 +29,13 @@ var App = React.createClass({
   },
   render: function () {
     return (
-      <div>
-        <h1>Data Calculator</h1>
-        <Catalog catalog={this.state.catalog}/>
+      <div className="content">
+        <Header />
+        <div className="data-calc">
+          <Catalog catalog={this.state.catalog} onCategorySelect={this.onCategorySelect}/>
+          <Items items={this.state.selectedItems}/>
+          <Order items={this.state.order}/>
+        </div>
       </div>
     )
   }
@@ -32,8 +43,7 @@ var App = React.createClass({
 
 var Catalog = React.createClass({
   renderCategory(key) {
-    return <Category key={key} index={key} details={this.props.catalog.categories[key]}
-                     items={this.props.catalog.items[key]}/>;
+    return <Category key={key} index={key} details={this.props.catalog.categories[key]} onCategorySelect={this.props.onCategorySelect}/>;
   },
   render: function () {
     return (
@@ -45,25 +55,95 @@ var Catalog = React.createClass({
 });
 
 var Category = React.createClass({
-  renderItem: function (key) {
-    return <Item key={key} index={key} details={this.props.items[key]}/>
+  onCategoryClick: function(event) {
+    event.preventDefault();
+    this.props.onCategorySelect(this.props.index);
   },
   render: function () {
     return (
       <li className="category">
-        {this.props.details.name}
-        <ul className="item-list">
-          {Object.keys(this.props.items).map(this.renderItem)}
-        </ul>
+        <a href="#" onClick={this.onCategoryClick}>{this.props.details.name}</a>
       </li>
     );
   }
 });
 
+var Items = React.createClass({
+  renderItem: function (key) {
+    return <Item key={key} index={key} details={this.props.items[key]}/>
+  },
+  render: function() {
+    return (
+      <ul className="item-list">
+        {Object.keys(this.props.items).map(this.renderItem)}
+      </ul>
+    );
+  }
+});
+
 var Item = React.createClass({
+  renderDescription: function(description) {
+    if (description) {
+      return (
+        <span className="item-desc">
+          <ul>
+            {description.map(function(obj, idx) { return <li key={idx}>{obj}</li>})}
+          </ul>
+        </span>
+      );
+    } else {
+      return "";
+    }
+  },
   render: function () {
-    return <li className="item">{this.props.details.name}</li>
+    var details = this.props.details;
+    var note = "";
+    if (details.note) {
+      note = <span className="item-note">{details.note}</span>;
+    }
+    return (
+      <li className="item">
+        <span className="item-name">{details.name}</span>
+        <span className="item-price">{h.formatPrice(details.value)}</span>
+        {this.renderDescription(details.description)}
+        {note}
+        <span className="item-source-name">Commercial Source</span>
+        <span className="item-source"><a href={details.commercialSource}>{details.commercialSource}</a></span>
+        <span className="item-source-name">Probable Source</span>
+        <span className="item-source">{details.probableSource}</span>
+      </li>
+    )
+  }
+});
+
+var Order = React.createClass({
+  render: function() {
+    var total = 0;
+
+    return (
+      <div className="order-wrap">
+        <h2 className="order-title">Your Data Value</h2>
+
+        <ul className="order">
+          <li className="total">
+            <strong>Total:</strong>
+            {h.formatPrice(total)}
+          </li>
+        </ul>
+      </div>
+    )
+  }
+});
+
+var Header = React.createClass({
+  render: function() {
+    return (
+      <header className="top">
+        <h1>Data Calculator</h1>
+      </header>
+    )
   }
 });
 
 ReactDOM.render(React.createElement(App), document.querySelector('#main'));
+

@@ -1,6 +1,67 @@
 // Import all partials
 @require './_*.styl'
 
+header.top
+  text-align center
+  h1
+    font-size 2rem
+    display flex
+    justify-content center
+
+.content
+  display flex
+  min-height 100vh
+  flex-direction column
+
+.data-calc
+  display flex
+  height 85vh
+  max-width 1500px
+  margin-bottom 5vh
+  justify-content center
+  flex 1
+  & > *
+    padding 1rem
+    border 1rem double lighten(black,10%)
+    position relative
+    background white
+    transition all 0.3s
+    box-shadow 0px 5px 5px rgba(0,0,0,0.1)
+    overflow scroll
+
+.category
+  border-bottom 1px solid black
+  padding 2rem 0
+  display flex
+  font-size 1.4rem
+  justify-content space-between
+  align-items center
+
+.item
+  margin-bottom 20px
+  max-width 500px
+  border 1px solid black
+  overflow hidden
+  display flex
+  flex-wrap wrap
+  .item-name
+    width 75%
+    border 1px solid black
+  .item-price
+    width 25%
+    text-align right
+    border 1px solid black
+  .item-desc
+    width 100%
+    border 1px solid black
+  .item-source-name
+    width 30%
+    border 1px solid black
+  .item-source
+    width 70%
+    text-align right
+    border 1px solid black
+
 ul
   list-style none
   margin 0
