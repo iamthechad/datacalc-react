@@ -11,9 +11,9 @@ class Category extends React.Component {
 
   render() {
     return (
-      <li className="category">
+      <div className="category">
         <a href="#" onClick={this.onCategoryClick}>{this.props.details.name}</a>
-      </li>
+      </div>
     );
   }
 }
