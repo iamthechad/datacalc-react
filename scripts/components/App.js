@@ -30,6 +30,23 @@ var App = React.createClass({
 
     this.setState({ order: order });
   },
+  removeFromOrder: function(key, categoryKey) {
+    var order = this.state.order;
+
+    if (!order[categoryKey]) {
+      return;
+    }
+
+    var idx = order[categoryKey].indexOf(key);
+
+    if (idx !== -1) {
+      order[categoryKey].splice(idx, 1);
+      if (order[categoryKey].length === 0) {
+        delete order[categoryKey];
+      }
+      this.setState({order: order});
+    }
+  },
   getInitialState: function () {
     return {
       catalog: {
@@ -59,7 +76,7 @@ var App = React.createClass({
             order={this.state.order}
             onSelectItem={this.onSelectItem}
           />
-          <Order catalog={this.state.catalog} items={this.state.order} />
+          <Order catalog={this.state.catalog} items={this.state.order} removeFromOrder={this.removeFromOrder} />
         </div>
       </div>
     )

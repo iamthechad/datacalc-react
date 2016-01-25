@@ -1,5 +1,7 @@
 import React from 'react';
 
+import classNames from 'classnames';
+
 import h from '../helpers';
 
 var Item = React.createClass({
@@ -22,8 +24,17 @@ var Item = React.createClass({
     if (details.note) {
       note = <span className="item-note">{details.note}</span>;
     }
+    var disabled = this.props.inOrder;
+    var selectButton = "";
+    if (!disabled) {
+      selectButton = <button onClick={this.props.onSelectItem.bind(null, this.props.index)}>Select</button>;
+    }
+    var itemClass = classNames({
+      'item': true,
+      'disabled': disabled
+    });
     return (
-      <li className="item">
+      <li className={itemClass}>
         <span className="item-name">{details.name}</span>
         <span className="item-price">{h.formatPrice(details.value)}</span>
         {this.renderDescription(details.description)}
@@ -32,7 +43,7 @@ var Item = React.createClass({
         <span className="item-source"><a href={details.commercialSource}>{details.commercialSource}</a></span>
         <span className="item-source-name">Probable Source</span>
         <span className="item-source">{details.probableSource}</span>
-        <button onClick={this.props.onSelectItem.bind(null, this.props.index)}>Select</button>
+        {selectButton}
       </li>
     )
   }

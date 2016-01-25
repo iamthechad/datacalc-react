@@ -11,7 +11,9 @@ var Order = React.createClass({
       index={key}
       category={this.props.catalog.categories[key]}
       selectedItems={this.props.items[key]}
-      items={this.props.catalog.items[key]} />;
+      items={this.props.catalog.items[key]}
+      removeFromOrder={this.props.removeFromOrder}
+    />;
   },
   render: function() {
     var catIds = Object.keys(this.props.items);
@@ -26,8 +28,8 @@ var Order = React.createClass({
     return (
       <div className="order-wrap">
         <h2 className="order-title">Your Data Value</h2>
-        {Object.keys(this.props.items).map(this.renderOrderCategory)}
         <ul className="order">
+          {Object.keys(this.props.items).map(this.renderOrderCategory)}
           <li className="total">
             <strong>Total:</strong>
             {h.formatPrice(total)}

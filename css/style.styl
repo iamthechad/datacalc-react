@@ -37,6 +37,11 @@ header.top
   justify-content space-between
   align-items center
 
+.disabled
+  pointer-events none
+  opacity 0.5
+  background #CCC
+
 .item
   margin-bottom 20px
   max-width 500px
@@ -61,6 +66,29 @@ header.top
     width 70%
     text-align right
     border 1px solid black
+
+.order
+  .order-category
+    font-size 1rem
+    font-weight 600
+    .order-items
+      padding-left 5px
+      list-style-position inside
+      font-weight normal
+  &:hover
+    // padding 1rem 0
+    button
+      display inline
+  button
+    border 0
+    display none
+    line-height 1
+    padding 0
+  li
+    &.total
+      font-weight 600
+      border-bottom 3px solid black
+      border-top 3px double black
 
 ul
   list-style none
