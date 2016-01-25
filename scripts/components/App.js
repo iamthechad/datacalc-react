@@ -1,6 +1,7 @@
 import React from 'react';
-
 import Rebase from 're-base';
+
+import classNames from 'classnames';
 
 import Header from './Header';
 import Catalog from './Catalog';
@@ -55,20 +56,42 @@ var App = React.createClass({
       },
       selectedCategory: "",
       selectedItems: {},
-      order: {}
+      order: {},
+      catalogLoaded: false
     }
   },
   componentDidMount: function () {
-    base.bindToState('catalog', {
+    base.fetch('catalog', {
       context: this,
-      state: 'catalog'
+      then(data){
+        this.setState({
+          catalog: data,
+          catalogLoaded: true
+        });
+        this.onCategorySelect(Object.keys(this.state.catalog.categories)[0]);
+      }
     });
+
+    var localStorageRef = localStorage.getItem('order');
+
+    if (localStorageRef) {
+      this.setState({
+        order : JSON.parse(localStorageRef)
+      });
+    }
+  },
+  componentWillUpdate(nextProps, nextState) {
+    localStorage.setItem('order', JSON.stringify(nextState.order));
   },
   render: function () {
+    var appClass = classNames({
+      'data-calc': true,
+      'disabled': !this.state.catalogLoaded
+    });
     return (
       <div className="content">
         <Header />
-        <div className="data-calc">
+        <div className={appClass}>
           <Catalog catalog={this.state.catalog} onCategorySelect={this.onCategorySelect} />
           <Items
             selectedCategory={this.state.selectedCategory}
