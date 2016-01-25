@@ -1,11 +1,8 @@
 import React from 'react';
 
-import autobind from 'autobind-decorator';
-
 import Item from './Item';
 
 class Items extends React.Component {
-  @autobind
   renderItem(key) {
     var category = this.props.selectedCategory;
     var order = this.props.order;
@@ -13,16 +10,23 @@ class Items extends React.Component {
     return <Item
       key={key}
       index={key}
-      details={this.props.items[key]}
+      details={this.props.catalog.items[category][key]}
       onSelectItem={this.props.onSelectItem}
       inOrder={inOrder}
     />
   }
 
   render() {
+    var categoryItems = {};
+    const selectedCategory = this.props.selectedCategory;
+    const catalog = this.props.catalog;
+
+    if (selectedCategory && catalog.items[selectedCategory]) {
+      categoryItems = catalog.items[selectedCategory];
+    }
     return (
       <ul className="item-list">
-        {Object.keys(this.props.items).map(this.renderItem)}
+        {Object.keys(categoryItems).map(key => this.renderItem(key))}
       </ul>
     );
   }

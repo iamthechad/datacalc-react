@@ -1,8 +1,11 @@
 import React from 'react';
 import Rebase from 're-base';
+import { connect } from 'react-redux'
 
 import autobind from 'autobind-decorator';
 import classNames from 'classnames';
+
+import { loadCatalog, catalogLoaded, selectCategory, addItem, removeItem } from '../actions/actions';
 
 import Header from './Header';
 import Catalog from './Catalog';
@@ -72,11 +75,10 @@ class App extends React.Component {
     base.fetch('catalog', {
       context: this,
       then(data){
-        this.setState({
-          catalog: data,
-          catalogLoaded: true
-        });
-        this.onCategorySelect(Object.keys(this.state.catalog.categories)[0]);
+        const { dispatch } = this.props;
+        dispatch(loadCatalog(data));
+        dispatch(catalogLoaded(true));
+        dispatch(selectCategory(Object.keys(data.categories)[0]));
       }
     });
 
@@ -94,26 +96,36 @@ class App extends React.Component {
   }
 
   render() {
+    const { dispatch, catalog, catalogLoaded, selectedCategory, order } = this.props;
     var appClass = classNames({
       'data-calc': true,
-      'disabled': !this.state.catalogLoaded
+      'disabled': !catalogLoaded
     });
     return (
       <div className="content">
         <Header />
         <div className={appClass}>
-          <Catalog catalog={this.state.catalog} onCategorySelect={this.onCategorySelect} />
+          <Catalog catalog={catalog} onCategorySelect={id => dispatch(selectCategory(id))} />
           <Items
-            selectedCategory={this.state.selectedCategory}
-            items={this.state.selectedItems}
-            order={this.state.order}
-            onSelectItem={this.onSelectItem}
+            selectedCategory={selectedCategory}
+            catalog={catalog}
+            order={order}
+            onSelectItem={id => dispatch(addItem(selectedCategory, id))}
           />
-          <Order catalog={this.state.catalog} items={this.state.order} removeFromOrder={this.removeFromOrder} />
+          <Order catalog={catalog} items={order} removeFromOrder={(id, categoryId) => dispatch(removeItem(categoryId, id))} />
         </div>
       </div>
     )
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    catalog: state.catalog,
+    catalogLoaded: state.catalogLoaded,
+    selectedCategory: state.selectedCategory,
+    order: state.order
+  }
+}
+
+export default connect(mapStateToProps)(App);

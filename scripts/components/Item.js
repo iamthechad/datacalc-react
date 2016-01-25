@@ -1,12 +1,10 @@
 import React from 'react';
 
-import autobind from 'autobind-decorator';
 import classNames from 'classnames';
 
 import h from '../helpers';
 
 class Item extends React.Component {
-  @autobind
   renderDescription(description) {
     if (description) {
       return (
@@ -30,7 +28,7 @@ class Item extends React.Component {
     var disabled = this.props.inOrder;
     var selectButton = "";
     if (!disabled) {
-      selectButton = <button onClick={this.props.onSelectItem.bind(null, this.props.index)}>Select</button>;
+      selectButton = <button onClick={e => this.props.onSelectItem(this.props.index)}>Select</button>;
     }
     var itemClass = classNames({
       'item': true,
