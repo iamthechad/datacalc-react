@@ -1,9 +1,12 @@
 import React from 'react';
 
+import autobind from 'autobind-decorator';
+
 import Item from './Item';
 
-var Items = React.createClass({
-  renderItem: function (key) {
+class Items extends React.Component {
+  @autobind
+  renderItem(key) {
     var category = this.props.selectedCategory;
     var order = this.props.order;
     var inOrder = order[category] && order[category].includes(key);
@@ -14,14 +17,15 @@ var Items = React.createClass({
       onSelectItem={this.props.onSelectItem}
       inOrder={inOrder}
     />
-  },
-  render: function() {
+  }
+
+  render() {
     return (
       <ul className="item-list">
         {Object.keys(this.props.items).map(this.renderItem)}
       </ul>
     );
   }
-});
+}
 
 export default Items;

@@ -1,11 +1,14 @@
 import React from 'react';
 
+import autobind from 'autobind-decorator';
+
 import OrderCategory from './OrderCategory';
 
 import h from '../helpers';
 
-var Order = React.createClass({
-  renderOrderCategory: function(key) {
+class Order extends React.Component {
+  @autobind
+  renderOrderCategory(key) {
     return <OrderCategory
       key={key}
       index={key}
@@ -14,8 +17,9 @@ var Order = React.createClass({
       items={this.props.catalog.items[key]}
       removeFromOrder={this.props.removeFromOrder}
     />;
-  },
-  render: function() {
+  }
+
+  render() {
     var catIds = Object.keys(this.props.items);
     var total = catIds.reduce((prevTotal, key) => {
       var itemIds = this.props.items[key];
@@ -38,6 +42,6 @@ var Order = React.createClass({
       </div>
     )
   }
-});
+}
 
 export default Order;

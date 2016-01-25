@@ -1,11 +1,13 @@
 import React from 'react';
 
+import autobind from 'autobind-decorator';
 import classNames from 'classnames';
 
 import h from '../helpers';
 
-var Item = React.createClass({
-  renderDescription: function(description) {
+class Item extends React.Component {
+  @autobind
+  renderDescription(description) {
     if (description) {
       return (
         <span className="item-desc">
@@ -17,8 +19,9 @@ var Item = React.createClass({
     } else {
       return "";
     }
-  },
-  render: function () {
+  }
+
+  render() {
     var details = this.props.details;
     var note = "";
     if (details.note) {
@@ -47,6 +50,6 @@ var Item = React.createClass({
       </li>
     )
   }
-});
+}
 
 export default Item;

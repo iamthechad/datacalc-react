@@ -1,6 +1,7 @@
 import React from 'react';
 import Rebase from 're-base';
 
+import autobind from 'autobind-decorator';
 import classNames from 'classnames';
 
 import Header from './Header';
@@ -10,15 +11,32 @@ import Order from './Order';
 
 var base = Rebase.createClass('https://glaring-torch-2436.firebaseio.com/');
 
-var App = React.createClass({
-  onCategorySelect: function(key) {
+@autobind
+class App extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      catalog: {
+        categories: {},
+        items: {}
+      },
+      selectedCategory: "",
+      selectedItems: {},
+      order: {},
+      catalogLoaded: false
+    };
+  }
+
+  onCategorySelect(key) {
     var selectedItems = this.state.catalog.items[key];
     this.setState({
       selectedItems: selectedItems,
       selectedCategory: key
     });
-  },
-  onSelectItem: function(key) {
+  }
+
+  onSelectItem(key) {
     var category = this.state.selectedCategory;
 
     var order = this.state.order;
@@ -30,8 +48,9 @@ var App = React.createClass({
     order[category].push(key);
 
     this.setState({ order: order });
-  },
-  removeFromOrder: function(key, categoryKey) {
+  }
+
+  removeFromOrder(key, categoryKey) {
     var order = this.state.order;
 
     if (!order[categoryKey]) {
@@ -47,20 +66,9 @@ var App = React.createClass({
       }
       this.setState({order: order});
     }
-  },
-  getInitialState: function () {
-    return {
-      catalog: {
-        categories: {},
-        items: {}
-      },
-      selectedCategory: "",
-      selectedItems: {},
-      order: {},
-      catalogLoaded: false
-    }
-  },
-  componentDidMount: function () {
+  }
+
+  componentDidMount() {
     base.fetch('catalog', {
       context: this,
       then(data){
@@ -79,11 +87,13 @@ var App = React.createClass({
         order : JSON.parse(localStorageRef)
       });
     }
-  },
+  }
+
   componentWillUpdate(nextProps, nextState) {
     localStorage.setItem('order', JSON.stringify(nextState.order));
-  },
-  render: function () {
+  }
+
+  render() {
     var appClass = classNames({
       'data-calc': true,
       'disabled': !this.state.catalogLoaded
@@ -104,6 +114,6 @@ var App = React.createClass({
       </div>
     )
   }
-});
+}
 
 export default App;
