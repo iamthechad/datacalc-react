@@ -16,4 +16,10 @@ const Items = props => (
   </div>
 );
 
+Items.propTypes = {
+  catalog: React.PropTypes.object.isRequired,
+  selectedCategory: React.PropTypes.string.isRequired,
+  order: React.PropTypes.object.isRequired
+};
+
 export default Items;

@@ -45,4 +45,16 @@ class Item extends React.Component {
   }
 }
 
+Item.propTypes = {
+  details: React.PropTypes.shape({
+    name: React.PropTypes.string.isRequired,
+    value: React.PropTypes.number.isRequired,
+    description: React.PropTypes.arrayOf(React.PropTypes.string),
+    note: React.PropTypes.string,
+    commercialSource: React.PropTypes.string.isRequired,
+    probableSource: React.PropTypes.string.isRequired
+  }),
+  onSelectItem: React.PropTypes.func.isRequired
+};
+
 export default Item;

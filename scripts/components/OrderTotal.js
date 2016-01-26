@@ -25,4 +25,9 @@ class OrderTotal extends React.Component {
   }
 }
 
+OrderTotal.propTypes = {
+  items: React.PropTypes.object.isRequired,
+  catalogItems: React.PropTypes.object.isRequired
+};
+
 export default OrderTotal;

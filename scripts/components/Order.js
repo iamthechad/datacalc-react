@@ -23,4 +23,10 @@ const Order = props => (
   </div>
 );
 
+Order.propTypes = {
+  items: React.PropTypes.object.isRequired,
+  catalog: React.PropTypes.object.isRequired,
+  removeFromOrder: React.PropTypes.func.isRequired
+};
+
 export default Order;

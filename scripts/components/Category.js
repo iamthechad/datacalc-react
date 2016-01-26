@@ -15,4 +15,11 @@ class Category extends React.Component {
   }
 }
 
+Category.propTypes = {
+  details: React.PropTypes.shape({
+    name: React.PropTypes.string.isRequired
+  }),
+  index: React.PropTypes.string.isRequired
+};
+
 export default Category;

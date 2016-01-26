@@ -12,4 +12,9 @@ const Catalog = props => (
   </div>
 );
 
+Catalog.propTypes = {
+  catalog: React.PropTypes.object.isRequired,
+  onCategorySelect: React.PropTypes.func.isRequired
+};
+
 export default Catalog;
