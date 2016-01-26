@@ -1,29 +1,19 @@
 import React from 'react';
+import _ from 'lodash';
 
 import Item from './Item';
 
-class Items extends React.Component {
-  render() {
-    let categoryItems = {};
-    const selectedCategory = this.props.selectedCategory;
-    const catalog = this.props.catalog;
-
-    if (selectedCategory && catalog.items[selectedCategory]) {
-      categoryItems = catalog.items[selectedCategory];
-    }
-    return (
-      <ul className="item-list">
-        {Object.keys(categoryItems).map(key =>
-          <Item
-            key={key}
-            index={key}
-            details={this.props.catalog.items[selectedCategory][key]}
-            onSelectItem={this.props.onSelectItem}
-            inOrder={this.props.order[selectedCategory] && this.props.order[selectedCategory].includes(key)}
-          />)}
-      </ul>
-    );
-  }
-}
+const Items = props => (
+  <ul className="item-list">
+    {Object.keys(_.pickBy(props.catalog.items, (value => value.category === props.selectedCategory))).map(key =>
+      <Item
+        key={key}
+        index={key}
+        details={props.catalog.items[key]}
+        onSelectItem={props.onSelectItem}
+        inOrder={props.order[props.selectedCategory] && props.order[props.selectedCategory].includes(key)}
+      />)}
+  </ul>
+);
 
 export default Items;

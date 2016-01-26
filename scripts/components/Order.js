@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 
 import OrderCategory from './OrderCategory';
 import OrderTotal from './OrderTotal';
@@ -14,7 +15,7 @@ const Order = props => (
         index={key}
         category={props.catalog.categories[key]}
         selectedItems={props.items[key]}
-        items={props.catalog.items[key]}
+        items={_.pickBy(props.catalog.items, (value => value.category === key))}
         removeFromOrder={props.removeFromOrder}
       />)}
       <OrderTotal items={props.items} catalogItems={props.catalog.items} />
