@@ -7,6 +7,7 @@ const Catalog = props => (
     {Object.keys(props.catalog.categories).sort().map(key => <Category
       key={key}
       index={key}
+      selectedCategory={props.selectedCategory}
       details={props.catalog.categories[key]}
       onCategorySelect={props.onCategorySelect}/>)}
   </div>
@@ -14,6 +15,7 @@ const Catalog = props => (
 
 Catalog.propTypes = {
   catalog: React.PropTypes.object.isRequired,
+  selectedCategory: React.PropTypes.string.isRequired,
   onCategorySelect: React.PropTypes.func.isRequired
 };
 

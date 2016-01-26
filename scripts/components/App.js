@@ -50,14 +50,22 @@ class App extends React.Component {
       <div className="content">
         <Header />
         <div className={appClass}>
-          <Catalog catalog={catalog} onCategorySelect={id => dispatch(selectCategory(id))} />
+          <Catalog
+            catalog={catalog}
+            selectedCategory={selectedCategory}
+            onCategorySelect={id => dispatch(selectCategory(id))}
+          />
           <Items
             selectedCategory={selectedCategory}
             catalog={catalog}
             order={order}
             onSelectItem={id => dispatch(addItem(selectedCategory, id))}
           />
-          <Order catalog={catalog} items={order} removeFromOrder={(categoryId, id) => dispatch(removeItem(categoryId, id))} />
+          <Order
+            catalog={catalog}
+            items={order}
+            removeFromOrder={(categoryId, id) => dispatch(removeItem(categoryId, id))}
+          />
         </div>
       </div>
     )
