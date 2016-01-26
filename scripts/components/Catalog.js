@@ -4,7 +4,7 @@ import Category from './Category';
 
 const Catalog = props => (
   <div className="catalog">
-    {Object.keys(props.catalog.categories).map(key => <Category
+    {Object.keys(props.catalog.categories).sort().map(key => <Category
       key={key}
       index={key}
       details={props.catalog.categories[key]}

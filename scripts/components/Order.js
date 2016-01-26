@@ -9,7 +9,7 @@ const Order = props => (
   <div className="order-wrap">
     <h2 className="order-title">Your Data Value</h2>
     <ul className="order">
-      {Object.keys(props.items).map(key => <OrderCategory
+      {Object.keys(props.items).sort().map(key => <OrderCategory
         key={key}
         index={key}
         category={props.catalog.categories[key]}
