@@ -15,22 +15,17 @@ class Item extends React.Component {
         </span>
       );
     } else {
-      return "";
+      return null;
     }
   }
 
   render() {
-    var details = this.props.details;
-    var note = "";
-    if (details.note) {
-      note = <span className="item-note">{details.note}</span>;
-    }
-    var disabled = this.props.inOrder;
-    var selectButton = "";
-    if (!disabled) {
-      selectButton = <button onClick={e => this.props.onSelectItem(this.props.index)}>Select</button>;
-    }
-    var itemClass = classNames({
+    const details = this.props.details;
+    const note = (details.note) ? <span className="item-note">{details.note}</span> : null;
+
+    const disabled = this.props.inOrder;
+    const selectButton = (!disabled) ? <button onClick={e => this.props.onSelectItem(this.props.index)}>Select</button> : null;
+    const itemClass = classNames({
       'item': true,
       'disabled': disabled
     });

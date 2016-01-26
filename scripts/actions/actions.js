@@ -7,6 +7,7 @@ export const CATALOG_LOADED = 'CATALOG_LOADED';
 export const SELECT_CATEGORY = 'SELECT_CATEGORY';
 export const ADD_ITEM = 'ADD_ITEM';
 export const REMOVE_ITEM = 'REMOVE_ITEM';
+export const LOAD_ORDER = 'LOAD_ORDER';
 
 /*
  * action creators
@@ -37,4 +38,8 @@ export function addItem(categoryId, id) {
 
 export function removeItem(categoryId, id) {
   return { type: REMOVE_ITEM, categoryId: categoryId, id : id }
+}
+
+export function loadOrder(order) {
+  return { type: LOAD_ORDER, order }
 }

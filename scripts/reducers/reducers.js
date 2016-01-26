@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { LOAD_CATALOG, CATALOG_LOADED, SELECT_CATEGORY, ADD_ITEM, REMOVE_ITEM } from '../actions/actions';
+import { LOAD_CATALOG, CATALOG_LOADED, SELECT_CATEGORY, ADD_ITEM, REMOVE_ITEM, LOAD_ORDER } from '../actions/actions';
 
 const DefaultCatalog = {
   categories: {},
@@ -62,6 +62,8 @@ function order(state = {}, action) {
       }
       return newState;
     }
+    case LOAD_ORDER:
+      return Object.assign({}, state, action.order);
     default:
       return state;
   }
