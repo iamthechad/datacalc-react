@@ -4,8 +4,8 @@ import _ from 'lodash';
 import Item from './Item';
 
 const Items = props => (
-  <ul className="item-list">
-    {Object.keys(_.pickBy(props.catalog.items, (value => value.category === props.selectedCategory))).map(key =>
+  <div className="item-list">
+    {Object.keys(_.pickBy(props.catalog.items, (value => value.category === props.selectedCategory))).sort().map(key =>
       <Item
         key={key}
         index={key}
@@ -13,7 +13,7 @@ const Items = props => (
         onSelectItem={props.onSelectItem}
         inOrder={props.order[props.selectedCategory] && props.order[props.selectedCategory].includes(key)}
       />)}
-  </ul>
+  </div>
 );
 
 export default Items;

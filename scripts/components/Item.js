@@ -30,7 +30,7 @@ class Item extends React.Component {
       'disabled': disabled
     });
     return (
-      <li className={itemClass}>
+      <div className={itemClass}>
         <span className="item-name">{details.name}</span>
         <span className="item-price">{h.formatPrice(details.value)}</span>
         {this.renderDescription(details.description)}
@@ -40,7 +40,7 @@ class Item extends React.Component {
         <span className="item-source-name">Probable Source</span>
         <span className="item-source">{details.probableSource}</span>
         {selectButton}
-      </li>
+      </div>
     )
   }
 }
