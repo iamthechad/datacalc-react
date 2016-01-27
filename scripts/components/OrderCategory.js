@@ -1,4 +1,5 @@
 import React from 'react';
+import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 import OrderCategoryItem from './OrderCategoryItem';
 
@@ -7,7 +8,12 @@ import h from '../helpers';
 const OrderCategory = props => (
   <li className="order-category">
     {props.category.name}
-    <ul className="order-items">
+    <CSSTransitionGroup
+      className="order-items"
+      component="ul"
+      transitionName="order-items"
+      transitionEnterTimeout={500}
+      transitionLeaveTimeout={500}>
       {props.selectedItems.sort().map(key =>
         <OrderCategoryItem
           key={key}
@@ -16,7 +22,7 @@ const OrderCategory = props => (
           categoryId={props.index}
           removeFromOrder={props.removeFromOrder}
         />)}
-    </ul>
+    </CSSTransitionGroup>
   </li>
 );
 
