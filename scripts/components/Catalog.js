@@ -1,16 +1,18 @@
 import React from 'react';
 
+import List from 'material-ui/lib/lists/list';
+import ListItem from 'material-ui/lib/lists/list-item';
+import {SelectableContainerEnhance} from 'material-ui/lib/hoc/selectable-enhance';
+
+let SelectableList = SelectableContainerEnhance(List);
+
 import Category from './Category';
 
 const Catalog = props => (
-  <div className="catalog">
-    {Object.keys(props.catalog.categories).sort().map(key => <Category
-      key={key}
-      index={key}
-      selectedCategory={props.selectedCategory}
-      details={props.catalog.categories[key]}
-      onCategorySelect={props.onCategorySelect}/>)}
-  </div>
+  <SelectableList valueLink={{value: props.selectedCategory, requestChange: props.onCategorySelect}}>
+    {Object.keys(props.catalog.categories).sort().map(key =>
+      <ListItem key={key} value={key} primaryText={props.catalog.categories[key].name}/>)}
+  </SelectableList>
 );
 
 Catalog.propTypes = {

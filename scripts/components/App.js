@@ -1,6 +1,7 @@
 import React from 'react';
 import Rebase from 're-base';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import classNames from 'classnames';
 
@@ -10,6 +11,12 @@ import Header from './Header';
 import Catalog from './Catalog';
 import Items from './Items';
 import Order from './Order';
+
+// Needed for onTouchTap
+// Can go away when react 1.0 release
+// Check this repo:
+// https://github.com/zilverline/react-tap-event-plugin
+injectTapEventPlugin();
 
 const base = Rebase.createClass('https://glaring-torch-2436.firebaseio.com/');
 
@@ -53,7 +60,7 @@ class App extends React.Component {
           <Catalog
             catalog={catalog}
             selectedCategory={selectedCategory}
-            onCategorySelect={id => dispatch(selectCategory(id))}
+            onCategorySelect={(e, id) => dispatch(selectCategory(id))}
           />
           <Items
             selectedCategory={selectedCategory}

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import ListItem from 'material-ui/lib/lists/list-item';
+
 import classNames from 'classnames';
 
 class Category extends React.Component {
@@ -13,11 +15,12 @@ class Category extends React.Component {
       'category': true,
       'selected': this.props.index === this.props.selectedCategory
     });
-    return (
+    return <ListItem value={this.props.index} primaryText={this.props.details.name}/>;
+    /*return (
       <div className={catClass} onClick={e => this.onCategoryClick(e)}>
         {this.props.details.name}
       </div>
-    );
+    );*/
   }
 }
 
