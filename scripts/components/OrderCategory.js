@@ -1,11 +1,25 @@
 import React from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
+import List from 'material-ui/lib/lists/list';
 
 import OrderCategoryItem from './OrderCategoryItem';
 
 import h from '../helpers';
 
 const OrderCategory = props => (
+    <List subheader={props.category.name} >
+        {props.selectedItems.sort().map(key =>
+            <OrderCategoryItem
+                key={key}
+                item={props.items[key]}
+                itemId={key}
+                categoryId={props.index}
+                removeFromOrder={props.removeFromOrder}
+            />)}
+    </List>
+);
+
+/*const OrderCategory = props => (
   <li className="order-category">
     {props.category.name}
     <CSSTransitionGroup
@@ -24,7 +38,7 @@ const OrderCategory = props => (
         />)}
     </CSSTransitionGroup>
   </li>
-);
+);*/
 
 OrderCategory.propTypes = {
   index: React.PropTypes.string.isRequired,

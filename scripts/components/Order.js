@@ -1,4 +1,9 @@
 import React from 'react';
+import Paper from 'material-ui/lib/paper';
+import Card from 'material-ui/lib/card/card';
+import CardTitle from 'material-ui/lib/card/card-title';
+import CardText from 'material-ui/lib/card/card-text';
+import Divider from 'material-ui/lib/divider';
 import _ from 'lodash';
 
 import OrderCategory from './OrderCategory';
@@ -7,20 +12,21 @@ import OrderTotal from './OrderTotal';
 import h from '../helpers';
 
 const Order = props => (
-  <div className="order-wrap">
-    <h2 className="order-title">Your Data Value</h2>
-    <ul className="order">
-      {Object.keys(props.items).sort().map(key => <OrderCategory
-        key={key}
-        index={key}
-        category={props.catalog.categories[key]}
-        selectedItems={props.items[key]}
-        items={_.pickBy(props.catalog.items, (value => value.category === key))}
-        removeFromOrder={props.removeFromOrder}
-      />)}
-      <OrderTotal items={props.items} catalogItems={props.catalog.items} />
-    </ul>
-  </div>
+  <Paper>
+    <Card>
+      <CardTitle title="Your Data Value" />
+    </Card>
+    {Object.keys(props.items).sort().map(key => <OrderCategory
+      key={key}
+      index={key}
+      category={props.catalog.categories[key]}
+      selectedItems={props.items[key]}
+      items={_.pickBy(props.catalog.items, (value => value.category === key))}
+      removeFromOrder={props.removeFromOrder}
+    />)}
+    <Divider />
+    <OrderTotal items={props.items} catalogItems={props.catalog.items} />
+  </Paper>
 );
 
 Order.propTypes = {

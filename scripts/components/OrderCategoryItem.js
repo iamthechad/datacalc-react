@@ -1,11 +1,15 @@
 import React from 'react';
+import ListItem from 'material-ui/lib/lists/list-item';
+import ActionDelete from 'material-ui/lib/svg-icons/action/delete';
 
 import h from '../helpers';
 
 const OrderCategoryItem = props => (
-    <li>
-      {props.item.name} - {h.formatPrice(props.item.value)} <button onClick={e => props.removeFromOrder(props.categoryId, props.itemId)}>&times;</button>
-    </li>
+    <ListItem
+        primaryText={props.item.name}
+        secondaryText={h.formatPrice(props.item.value)}
+        rightIcon={<ActionDelete onClick={e => props.removeFromOrder(props.categoryId, props.itemId)}/>}
+    />
 );
 
 OrderCategoryItem.propTypes = {

@@ -1,4 +1,6 @@
 import React from 'react';
+import List from 'material-ui/lib/lists/list';
+import ListItem from 'material-ui/lib/lists/list-item';
 
 import h from '../helpers';
 
@@ -10,17 +12,16 @@ class OrderTotal extends React.Component {
     const total = catIds.reduce((prevTotal, key) => {
       const itemIds = items[key];
       const categoryTotal = itemIds.reduce((itemPrevTotal, itemKey) => {
-        const itemValue = (catalogItems[key] && catalogItems[key][itemKey]) ? catalogItems[key][itemKey].value : 0;
+        const itemValue = catalogItems[itemKey] ? catalogItems[itemKey].value : 0;
         return itemPrevTotal + itemValue;
       }, 0);
       return prevTotal + categoryTotal;
     }, 0);
 
     return (
-      <li className="total">
-        <strong>Total:</strong>
-        {h.formatPrice(total)}
-      </li>
+      <List>
+        <ListItem primaryText="Total" secondaryText={h.formatPrice(total)}/>
+      </List>
     )
   }
 }

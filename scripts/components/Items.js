@@ -1,10 +1,13 @@
 import React from 'react';
+import Paper from 'material-ui/lib/paper';
+import Card from 'material-ui/lib/card/card';
+import CardText from 'material-ui/lib/card/card-text';
 import _ from 'lodash';
 
 import Item from './Item';
 
 const Items = props => (
-  <div className="item-list">
+  <Paper>
     {Object.keys(_.pickBy(props.catalog.items, (value => value.category === props.selectedCategory))).sort().map(key =>
       <Item
         key={key}
@@ -13,7 +16,7 @@ const Items = props => (
         onSelectItem={props.onSelectItem}
         inOrder={props.order[props.selectedCategory] && props.order[props.selectedCategory].includes(key)}
       />)}
-  </div>
+  </Paper>
 );
 
 Items.propTypes = {
