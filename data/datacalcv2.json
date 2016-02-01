@@ -2,19 +2,24 @@
   "catalog": {
     "categories": {
       "financial": {
-        "name": "Financial Information"
+        "name": "Financial Information",
+        "icon": "icon-coin-dollar"
       },
       "general": {
-        "name": "General Information"
+        "name": "General Information",
+        "icon": "icon-user"
       },
       "legal": {
-        "name": "Legal"
+        "name": "Legal",
+        "icon": "icon-library"
       },
       "licenses": {
-        "name": "Licenses"
+        "name": "Licenses",
+        "icon": "icon-profile"
       },
       "political": {
-        "name": "Political and Military"
+        "name": "Political and Military",
+        "icon": "icon-flag"
       }
     },
     "items": {
