@@ -1,7 +1,5 @@
 import React from 'react';
 import Paper from 'material-ui/lib/paper';
-import Card from 'material-ui/lib/card/card';
-import CardText from 'material-ui/lib/card/card-text';
 import _ from 'lodash';
 
 import Item from './Item';

@@ -10,8 +10,6 @@ import FontIcon from 'material-ui/lib/font-icon';
 
 let SelectableList = SelectableContainerEnhance(List);
 
-import Category from './Category';
-
 const Catalog = props => (
   <Card>
     <CardTitle title="Categories" />

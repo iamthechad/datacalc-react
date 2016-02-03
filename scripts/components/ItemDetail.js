@@ -6,11 +6,11 @@ class ItemDetail extends React.Component {
   render() {
     var descValue;
     var noteValue;
-    if (this.props.description) {
-      descValue = 'Includes: ' + this.props.description.join(",");
+    if (this.props.details.description) {
+      descValue = 'Includes: ' + this.props.details.description.join(",");
     }
-    if (this.props.note) {
-      noteValue = <div>({this.props.note})</div>;
+    if (this.props.details.note) {
+      noteValue = <div>({this.props.details.note})</div>;
     }
 
     return (descValue || noteValue) ? <CardText>{descValue}{noteValue}</CardText> : null;
@@ -18,8 +18,10 @@ class ItemDetail extends React.Component {
 }
 
 ItemDetail.propTypes = {
-  description: React.PropTypes.arrayOf(React.PropTypes.string),
-  note: React.PropTypes.string
+  details: React.PropTypes.shape({
+    description: React.PropTypes.arrayOf(React.PropTypes.string),
+    note: React.PropTypes.string
+  })
 };
 
 export default ItemDetail;
