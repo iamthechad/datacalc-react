@@ -1,19 +1,13 @@
 import React from 'react';
 
-import CardText from 'material-ui/lib/card/card-text';
+import ListItem from 'material-ui/lib/lists/list-item';
 
 class ItemDetail extends React.Component {
   render() {
-    var descValue;
-    var noteValue;
-    if (this.props.details.description) {
-      descValue = 'Includes: ' + this.props.details.description.join(",");
-    }
-    if (this.props.details.note) {
-      noteValue = <div>({this.props.details.note})</div>;
-    }
-
-    return (descValue || noteValue) ? <CardText>{descValue}{noteValue}</CardText> : null;
+    return (this.props.details.description || this.props.details.note) ? <ListItem
+      primaryText={this.props.details.description.join(", ")}
+      secondaryText={this.props.details.note}
+      disabled={true}/> : null;
   }
 }
 

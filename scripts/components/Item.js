@@ -3,18 +3,34 @@ import React from 'react';
 import Card from 'material-ui/lib/card/card';
 import CardActions from 'material-ui/lib/card/card-actions';
 import CardTitle from 'material-ui/lib/card/card-title';
+import CardText from 'material-ui/lib/card/card-text';
 import FlatButton from 'material-ui/lib/flat-button';
+import List from 'material-ui/lib/lists/list';
+import ListItem from 'material-ui/lib/lists/list-item';
+import Divider from 'material-ui/lib/divider';
 
 import ItemDetail from './ItemDetail';
+import Link from './Link';
 
 import h from '../helpers';
 
 const Item = props => (
   <Card>
     <CardTitle title={props.details.name} subtitle={h.formatPrice(props.details.value)} />
-    <ItemDetail details={props.details} />
+    <CardText>
+      <List>
+        <ItemDetail details={props.details} />
+        {props.details.description || props.details.note ? <Divider/> : null}
+        <ListItem
+          primaryText="Commercial Source"
+          secondaryText={<Link linkTarget={props.details.commercialSource} linkText={props.details.commercialSource}/>}
+          disabled={true}
+        />
+        <ListItem primaryText="Probable Source" secondaryText={props.details.probableSource} disabled={true}/>
+      </List>
+    </CardText>
     <CardActions>
-      {(!props.inOrder) ? <FlatButton onClick={e => props.onSelectItem(props.index)}>Select</FlatButton> : null}
+      {(!props.inOrder) ? <FlatButton onTouchTap={e => props.onSelectItem(props.index)}>Select</FlatButton> : null}
     </CardActions>
   </Card>
 );
