@@ -11,6 +11,7 @@ import Divider from 'material-ui/lib/divider';
 
 import ItemDetail from './ItemDetail';
 import Link from './Link';
+import ThemedFlatButton from './ThemedFlatButton';
 
 import h from '../helpers';
 
@@ -30,7 +31,7 @@ const Item = props => (
       </List>
     </CardText>
     <CardActions>
-      {(!props.inOrder) ? <FlatButton onTouchTap={e => props.onSelectItem(props.index)}>Select</FlatButton> : null}
+      {(!props.inOrder) ? <ThemedFlatButton onTouchTap={e => props.onSelectItem(props.index)}>Select</ThemedFlatButton> : null}
     </CardActions>
   </Card>
 );

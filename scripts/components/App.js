@@ -7,6 +7,10 @@ import classNames from 'classnames';
 
 import { loadCatalog, catalogLoaded, selectCategory, addItem, removeItem, loadOrder } from '../actions/actions';
 
+import ThemeManager from 'material-ui/lib/styles/theme-manager';
+import ThemeDecorator from 'material-ui/lib/styles/theme-decorator';
+import MegatomeTheme from '../themes/default';
+
 import Header from './Header';
 import Catalog from './Catalog';
 import Items from './Items';
@@ -20,6 +24,7 @@ injectTapEventPlugin();
 
 const base = Rebase.createClass('https://glaring-torch-2436.firebaseio.com/');
 
+@ThemeDecorator(ThemeManager.getMuiTheme(MegatomeTheme))
 class App extends React.Component {
   componentDidMount() {
     const { dispatch } = this.props;
