@@ -6,20 +6,20 @@ import Item from './Item';
 
 const Items = props => (
   <Paper>
-    {Object.keys(_.pickBy(props.catalog.items, (value => value.category === props.selectedCategory))).sort().map(key =>
+    {Object.keys(_.pickBy(props.catalog.items, (value => value.category === props.catalog.selectedCategory))).sort().map(key =>
       <Item
+        {...props}
         key={key}
         index={key}
         details={props.catalog.items[key]}
-        onSelectItem={props.onSelectItem}
-        inOrder={props.order[props.selectedCategory] && props.order[props.selectedCategory].includes(key)}
+        selectedCategory={props.catalog.selectedCategory}
+        inOrder={props.order[props.catalog.selectedCategory] && props.order[props.catalog.selectedCategory].includes(key)}
       />)}
   </Paper>
 );
 
 Items.propTypes = {
   catalog: React.PropTypes.object.isRequired,
-  selectedCategory: React.PropTypes.string.isRequired,
   order: React.PropTypes.object.isRequired
 };
 

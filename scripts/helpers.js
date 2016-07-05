@@ -1,8 +1,8 @@
-let helpers =  {
-  formatPrice :  function(cents) {
-    return '$' + ( (cents / 100).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",") );
+const helpers =  {
+  formatPrice(cents) {
+    return '$' + ( (cents / 100).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',') );
   },
-  calculateTotal: function(items, catalogItems) {
+  calculateTotal(items, catalogItems) {
     const catIds = Object.keys(items);
     return catIds.reduce((prevTotal, key) => {
       const itemIds = items[key];

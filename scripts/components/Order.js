@@ -12,23 +12,22 @@ const Order = props => (
     <Card>
       <CardTitle title="Your Data Value" />
     </Card>
-    {Object.keys(props.items).sort().map(key => <OrderCategory
+    {Object.keys(props.order).sort().map(key => <OrderCategory
+      {...props}
       key={key}
       index={key}
       category={props.catalog.categories[key]}
-      selectedItems={props.items[key]}
+      selectedItems={props.order[key]}
       items={_.pickBy(props.catalog.items, (value => value.category === key))}
-      removeFromOrder={props.removeFromOrder}
     />)}
     <Divider />
-    <OrderTotal items={props.items} catalogItems={props.catalog.items} />
+    <OrderTotal order={props.order} catalogItems={props.catalog.items} />
   </Paper>
 );
 
 Order.propTypes = {
-  items: React.PropTypes.object.isRequired,
-  catalog: React.PropTypes.object.isRequired,
-  removeFromOrder: React.PropTypes.func.isRequired
+  order: React.PropTypes.object.isRequired,
+  catalog: React.PropTypes.object.isRequired
 };
 
 export default Order;

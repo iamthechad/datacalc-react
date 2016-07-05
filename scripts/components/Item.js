@@ -26,7 +26,7 @@ const Item = props => (
       </List>
     </CardText>
     <CardActions>
-      {(!props.inOrder) ? <ThemedFlatButton onTouchTap={e => props.onSelectItem(props.index)}>Select</ThemedFlatButton> : null}
+      {(!props.inOrder) ? <ThemedFlatButton onTouchTap={e => props.addItem(props.selectedCategory, props.index)}>Select</ThemedFlatButton> : null}
     </CardActions>
   </Card>
 );
@@ -40,7 +40,7 @@ Item.propTypes = {
     commercialSource: React.PropTypes.string.isRequired,
     probableSource: React.PropTypes.string.isRequired
   }),
-  onSelectItem: React.PropTypes.func.isRequired
+  selectedCategory: React.PropTypes.string.isRequired
 };
 
 export default Item;

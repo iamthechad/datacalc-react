@@ -1,11 +1,11 @@
 import React from 'react';
 import Rebase from 're-base';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actionCreators from '../actions/actions';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import classNames from 'classnames';
-
-import { loadCatalog, catalogLoaded, selectCategory, addItem, removeItem, loadOrder } from '../actions/actions';
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MegatomeTheme from '../themes/default';
@@ -25,28 +25,25 @@ injectTapEventPlugin();
 
 const base = Rebase.createClass('https://glaring-torch-2436.firebaseio.com/');
 
-//@ThemeDecorator(ThemeManager.getMuiTheme(MegatomeTheme))
 class App extends React.Component {
   getChildContext() {
     return {muiTheme: getMuiTheme(MegatomeTheme)};
   }
 
   componentDidMount() {
-    const { dispatch } = this.props;
-
     base.fetch('catalog', {
       context: this,
       then(data){
-        dispatch(loadCatalog(data));
+        this.props.loadCatalog(data);
 
         const localStorageRef = localStorage.getItem('order');
 
         if (localStorageRef) {
-          dispatch(loadOrder(JSON.parse(localStorageRef)));
+          this.props.loadOrder(JSON.parse(localStorageRef));
         }
 
-        dispatch(catalogLoaded(true));
-        dispatch(selectCategory(Object.keys(data.categories)[0]));
+        this.props.catalogLoaded(true);
+        this.props.selectCategory(Object.keys(data.categories)[0]);
       }
     });
   }
@@ -58,31 +55,17 @@ class App extends React.Component {
   }
 
   render() {
-    const { dispatch, catalog, catalogLoaded, selectedCategory, order } = this.props;
     const appClass = classNames({
       'data-calc': true,
-      'disabled': !catalogLoaded
+      'disabled': !this.props.catalog.catalogLoaded
     });
     return (
       <div className="content">
         <Header />
         <div className={appClass}>
-          <Catalog
-            catalog={catalog}
-            selectedCategory={selectedCategory}
-            onCategorySelect={(e, id) => dispatch(selectCategory(id))}
-          />
-          <Items
-            selectedCategory={selectedCategory}
-            catalog={catalog}
-            order={order}
-            onSelectItem={id => dispatch(addItem(selectedCategory, id))}
-          />
-          <Order
-            catalog={catalog}
-            items={order}
-            removeFromOrder={(categoryId, id) => dispatch(removeItem(categoryId, id))}
-          />
+          <Catalog {...this.props} />
+          <Items {...this.props} />
+          <Order {...this.props} />
         </div>
       </div>
     )
@@ -96,10 +79,12 @@ App.childContextTypes = {
 function mapStateToProps(state) {
   return {
     catalog: state.catalog,
-    catalogLoaded: state.catalogLoaded,
-    selectedCategory: state.selectedCategory,
     order: state.order
   }
 }
 
-export default connect(mapStateToProps)(App);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(actionCreators, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -4,13 +4,16 @@ import { Card, CardTitle, CardText } from 'material-ui/Card';
 import { List, ListItem, MakeSelectable } from 'material-ui/List';
 import FontIcon from 'material-ui/FontIcon';
 
+/*eslint babel/new-cap: ["error", { "capIsNew": false }]*/
 let SelectableList = MakeSelectable(List);
 
 const Catalog = props => (
   <Card>
     <CardTitle title="Categories" />
     <CardText>
-      <SelectableList valueLink={{value: props.selectedCategory, requestChange: props.onCategorySelect}}>
+      <SelectableList
+        value={props.catalog.selectedCategory}
+        onChange={(e, id) => props.selectCategory(id)}>
         {Object.keys(props.catalog.categories).sort().map(key =>
           <ListItem
             key={key}
@@ -26,9 +29,7 @@ const Catalog = props => (
 );
 
 Catalog.propTypes = {
-  catalog: React.PropTypes.object.isRequired,
-  selectedCategory: React.PropTypes.string.isRequired,
-  onCategorySelect: React.PropTypes.func.isRequired
+  catalog: React.PropTypes.object.isRequired
 };
 
 export default Catalog;

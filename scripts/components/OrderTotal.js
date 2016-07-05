@@ -5,12 +5,12 @@ import h from '../helpers';
 
 const OrderTotal = props => (
   <List>
-    <ListItem primaryText="Total" secondaryText={h.formatPrice(h.calculateTotal(props.items, props.catalogItems))}/>
+    <ListItem primaryText="Total" secondaryText={h.formatPrice(h.calculateTotal(props.order, props.catalogItems))}/>
   </List>
 );
 
 OrderTotal.propTypes = {
-  items: React.PropTypes.object.isRequired,
+  order: React.PropTypes.object.isRequired,
   catalogItems: React.PropTypes.object.isRequired
 };
 
