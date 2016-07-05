@@ -1,7 +1,6 @@
 import React from 'react';
-import List from 'material-ui/lib/lists/list';
-import ListItem from 'material-ui/lib/lists/list-item';
-import ActionDelete from 'material-ui/lib/svg-icons/action/delete';
+import { List, ListItem } from 'material-ui/List';
+import ActionDelete from 'material-ui/svg-icons/action/delete';
 
 import h from '../helpers';
 

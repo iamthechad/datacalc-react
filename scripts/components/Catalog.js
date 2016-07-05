@@ -1,14 +1,10 @@
 import React from 'react';
 
-import Card from 'material-ui/lib/card/card';
-import CardTitle from 'material-ui/lib/card/card-title';
-import CardText from 'material-ui/lib/card/card-text';
-import List from 'material-ui/lib/lists/list';
-import ListItem from 'material-ui/lib/lists/list-item';
-import {SelectableContainerEnhance} from 'material-ui/lib/hoc/selectable-enhance';
-import FontIcon from 'material-ui/lib/font-icon';
+import { Card, CardTitle, CardText } from 'material-ui/Card';
+import { List, ListItem, MakeSelectable } from 'material-ui/List';
+import FontIcon from 'material-ui/FontIcon';
 
-let SelectableList = SelectableContainerEnhance(List);
+let SelectableList = MakeSelectable(List);
 
 const Catalog = props => (
   <Card>

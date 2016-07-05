@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ListItem from 'material-ui/lib/lists/list-item';
+import { ListItem } from 'material-ui/List';
 
 class ItemDetail extends React.Component {
   render() {

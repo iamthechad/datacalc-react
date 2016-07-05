@@ -1,28 +1,30 @@
-import Colors from 'material-ui/lib/styles/colors';
-import ColorManipulator from 'material-ui/lib/utils/color-manipulator';
-import Spacing from 'material-ui/lib/styles/spacing';
-import zIndex from 'material-ui/lib/styles/zIndex';
+import { green500, green700, lightBlack, pinkA200,
+          grey100, orange500, darkBlack, white,
+          grey300, cyan500, green100 } from 'material-ui/styles/colors';
+import {fade} from 'material-ui/utils/colorManipulator';
+import spacing from 'material-ui/styles/spacing';
+import zIndex from 'material-ui/styles/zIndex';
 
 export default {
-  spacing: Spacing,
+  spacing: spacing,
   zIndex: zIndex,
   fontFamily: 'Roboto, sans-serif',
   palette: {
-    primary1Color: Colors.green500,
-    primary2Color: Colors.green700,
-    primary3Color: Colors.lightBlack,
-    accent1Color: Colors.pinkA200,
-    accent2Color: Colors.grey100,
-    accent3Color: Colors.orange500,
-    textColor: Colors.darkBlack,
-    alternateTextColor: Colors.white,
-    canvasColor: Colors.white,
-    borderColor: Colors.grey300,
-    disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3),
-    pickerHeaderColor: Colors.cyan500
+    primary1Color: green500,
+    primary2Color: green700,
+    primary3Color: lightBlack,
+    accent1Color: pinkA200,
+    accent2Color: grey100,
+    accent3Color: orange500,
+    textColor: darkBlack,
+    alternateTextColor: white,
+    canvasColor: white,
+    borderColor: grey300,
+    disabledColor: fade(darkBlack, 0.3),
+    pickerHeaderColor: cyan500
   },
   flatButton: {
-    hoverColor: Colors.green100,
-    rippleColor: Colors.green500
+    hoverColor: green100,
+    rippleColor: green500
   }
 };

@@ -1,15 +1,11 @@
 import React from 'react';
-import Paper from 'material-ui/lib/paper';
-import Card from 'material-ui/lib/card/card';
-import CardTitle from 'material-ui/lib/card/card-title';
-import CardText from 'material-ui/lib/card/card-text';
-import Divider from 'material-ui/lib/divider';
+import Paper from 'material-ui/Paper';
+import { Card, CardTitle } from 'material-ui/Card';
+import Divider from 'material-ui/Divider';
 import _ from 'lodash';
 
 import OrderCategory from './OrderCategory';
 import OrderTotal from './OrderTotal';
-
-import h from '../helpers';
 
 const Order = props => (
   <Paper>

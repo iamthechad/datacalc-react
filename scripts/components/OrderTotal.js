@@ -1,6 +1,5 @@
 import React from 'react';
-import List from 'material-ui/lib/lists/list';
-import ListItem from 'material-ui/lib/lists/list-item';
+import { List, ListItem } from 'material-ui/List';
 
 import h from '../helpers';
 

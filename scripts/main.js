@@ -6,11 +6,12 @@ import { Provider } from 'react-redux';
 import App from './components/App';
 import dataCalcApp from './reducers/reducers';
 
-let store = createStore(dataCalcApp);
+const store = createStore(dataCalcApp);
 
-render(
+const mainApp = (
   <Provider store={store}>
     <App />
-  </Provider>,
-  document.querySelector('#main')
+  </Provider>
 );
+
+render(mainApp, document.querySelector('#main'));

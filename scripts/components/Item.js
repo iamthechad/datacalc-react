@@ -1,13 +1,8 @@
 import React from 'react';
 
-import Card from 'material-ui/lib/card/card';
-import CardActions from 'material-ui/lib/card/card-actions';
-import CardTitle from 'material-ui/lib/card/card-title';
-import CardText from 'material-ui/lib/card/card-text';
-import FlatButton from 'material-ui/lib/flat-button';
-import List from 'material-ui/lib/lists/list';
-import ListItem from 'material-ui/lib/lists/list-item';
-import Divider from 'material-ui/lib/divider';
+import { Card, CardActions, CardTitle, CardText } from 'material-ui/Card';
+import { List, ListItem } from 'material-ui/List';
+import Divider from 'material-ui/Divider';
 
 import ItemDetail from './ItemDetail';
 import Link from './Link';

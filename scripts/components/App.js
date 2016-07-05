@@ -7,14 +7,15 @@ import classNames from 'classnames';
 
 import { loadCatalog, catalogLoaded, selectCategory, addItem, removeItem, loadOrder } from '../actions/actions';
 
-import ThemeManager from 'material-ui/lib/styles/theme-manager';
-import ThemeDecorator from 'material-ui/lib/styles/theme-decorator';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MegatomeTheme from '../themes/default';
 
 import Header from './Header';
 import Catalog from './Catalog';
 import Items from './Items';
 import Order from './Order';
+
+require('../../css/style.styl');
 
 // Needed for onTouchTap
 // Can go away when react 1.0 release
@@ -24,8 +25,12 @@ injectTapEventPlugin();
 
 const base = Rebase.createClass('https://glaring-torch-2436.firebaseio.com/');
 
-@ThemeDecorator(ThemeManager.getMuiTheme(MegatomeTheme))
+//@ThemeDecorator(ThemeManager.getMuiTheme(MegatomeTheme))
 class App extends React.Component {
+  getChildContext() {
+    return {muiTheme: getMuiTheme(MegatomeTheme)};
+  }
+
   componentDidMount() {
     const { dispatch } = this.props;
 
@@ -83,6 +88,10 @@ class App extends React.Component {
     )
   }
 }
+
+App.childContextTypes = {
+  muiTheme: React.PropTypes.object.isRequired
+};
 
 function mapStateToProps(state) {
   return {
