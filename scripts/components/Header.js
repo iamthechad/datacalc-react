@@ -4,7 +4,7 @@ import IconButton from 'material-ui/IconButton';
 
 const Header = props => (
   <AppBar
-    iconElementLeft={<IconButton iconClassName="icon-github" href="https://github.com/iamthechad/datacalc-react" linkButton={true}/>}
+    iconElementLeft={<IconButton iconClassName="icon-github" href="https://github.com/iamthechad/datacalc-react" />}
     title="Data Calculator"
   />
 );

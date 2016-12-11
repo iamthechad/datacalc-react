@@ -1,11 +1,10 @@
 import React from 'react';
 
 import { Card, CardTitle, CardText } from 'material-ui/Card';
-import { List, ListItem, MakeSelectable } from 'material-ui/List';
+import { List, ListItem, makeSelectable } from 'material-ui/List';
 import FontIcon from 'material-ui/FontIcon';
 
-/*eslint babel/new-cap: ["error", { "capIsNew": false }]*/
-let SelectableList = MakeSelectable(List);
+let SelectableList = makeSelectable(List);
 
 const Catalog = props => (
   <Card>
