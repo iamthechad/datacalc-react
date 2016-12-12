@@ -11,7 +11,6 @@ function catalog(state = [], action) {
         ...state,
         selectedCategory: action.id
       };
-      return state;
     case 'CATALOG_LOADED':
       return {
         ...state,

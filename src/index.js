@@ -6,6 +6,8 @@ import App from './components/App';
 
 import store from './store';
 
+import './css/style.css';
+
 const mainApp = (
   <Provider store={store}>
     <App />

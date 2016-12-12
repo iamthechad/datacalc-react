@@ -15,15 +15,18 @@ import Catalog from './Catalog';
 import Items from './Items';
 import Order from './Order';
 
-require('../../css/style.styl');
-
 // Needed for onTouchTap
 // Can go away when react 1.0 release
 // Check this repo:
 // https://github.com/zilverline/react-tap-event-plugin
 injectTapEventPlugin();
 
-const base = Rebase.createClass('https://glaring-torch-2436.firebaseio.com/');
+//const base = Rebase.createClass('https://glaring-torch-2436.firebaseio.com/');
+const base = Rebase.createClass({
+    //apiKey: "AIzaSyCdgXxyNqCZEeY36Ss9i4jFMSUh7FdGi6M",
+    //authDomain: "catch-of-the-day-wes-bos.firebaseapp.com",
+    databaseURL: 'https://glaring-torch-2436.firebaseio.com/'
+});
 
 class App extends React.Component {
   getChildContext() {
